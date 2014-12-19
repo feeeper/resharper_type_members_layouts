@@ -1,4 +1,4 @@
-resharper_type_members_layouts
+Type Members Layouts for R#
 ==============================
 
-some samples for R#'s type member layout
+That repository contains samples for organize code members using R#'s "Type member layout" feature.
