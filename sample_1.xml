@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patterns xmlns="urn:shemas-jetbrains-com:member-reordering-patterns">
+	<!--Default pattern-->
+  <Pattern>
+    <!--static fields and constants-->
+    <Entry>
+      <Match>
+        <Or>
+          <Kind Is="constant"/>
+          <And>
+            <Kind Is="field"/>
+            <Static/>
+          </And>
+        </Or>
+      </Match>
+      <Sort>
+        <Kind Order="constant field"/>
+      </Sort>
+      <Group Region="Constants"/>
+    </Entry>
+
+	<!--instance fields-->
+    <Entry>
+      <Match>
+        <And>
+          <Kind Is="field"/>
+          <Not>
+            <Static/>
+          </Not>
+        </And>
+      </Match>
+      <Sort>
+        <Readonly/>
+        <Name/>
+      </Sort>
+      <Group Region="Fields"/>
+    </Entry>
+
+	<!--properties, indexers-->
+    <Entry>
+      <Match>
+        <Or>
+          <Kind Is="property"/>
+          <Kind Is="indexer"/>
+        </Or>
+      </Match>
+      <Sort>
+      	<Readonly/>
+      	<Name/>
+      </Sort>
+      <Group Region="Properties"/>
+    </Entry>
+    
+    <!--Constructors. Place static one first-->
+    <Entry>
+      <Match>
+        <Kind Is="constructor"/>
+      </Match>
+      <Sort>
+        <Static/>
+      </Sort>
+      <Group Region="Constructors"/>
+    </Entry>
+    
+    <!--interface implementations-->
+    <Entry>
+      <Match>
+        <And Weight="100">
+          <Kind Is="member"/>
+          <ImplementsInterface/>
+        </And>
+      </Match>
+      <Sort>
+        <ImplementsInterface Immediate="true"/>
+      </Sort>
+      <Group>
+      	<ImplementsInterface Region="$(ImplementsInterface) members"/>
+      </Group>
+    </Entry>
+    
+    <!--all other members-->
+    <Entry>
+    	<Match>
+    		<Kind Is="method"/>
+    	</Match>
+    	<Group Region="methods"/>
+    </Entry>
+    
+    <!--nested types-->
+    <Entry>
+      <Match>
+        <Kind Is="type"/>
+      </Match>
+      <Sort>
+        <Name/>
+      </Sort>
+      <Group Region="Nested Types"/>
+    </Entry>
+  </Pattern>
+</Patterns>
