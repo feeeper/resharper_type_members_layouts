@@ -83,7 +83,7 @@
     	<Match>
     		<Kind Is="method"/>
     	</Match>
-    	<Group Region="methods"/>
+    	<Group Region="Methods"/>
     </Entry>
     
     <!--nested types-->
